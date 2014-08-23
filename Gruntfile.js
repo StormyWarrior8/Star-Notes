@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
         watch: {
             scripts: {
                 files: [
-                    "app/*"
+                    "app/js/*"
                 ],
                 tasks: [ "concat:scripts" ]
             }
