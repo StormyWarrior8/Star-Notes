@@ -1,6 +1,8 @@
 {
-    "main": "index.html",
     "name": "Links-App",
+    "version": "0.0.1",
+    "main": "index.html",
+    "description": "Links by Project Weekend",
     "window": {
         "title": "Links",
         // "icon": "link.png",
