@@ -1,1 +1,7 @@
-<div>Add folder</div>
+<div class="wrapper">
+    <h1>Add New Folder</h1>
+    <form ng-submit="save()" name="addFolderForm">
+        <input ng-model="folder.name" name="nameField" type="text" placeholder="Folder name" class="input-field" id="folder-name-input"/>
+        <button type="submit" class="btn block" id="save-folder-button">Save</button>
+    </form>
+</div>

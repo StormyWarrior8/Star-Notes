@@ -44,8 +44,6 @@ textarea {
 
 input[type=text]{
 	border: solid 1px #dae4eb;
-	margin: 20px 0 0 20px;
-	padding-left: 10px;
 }
 	input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
    		color: #dae4eb;
