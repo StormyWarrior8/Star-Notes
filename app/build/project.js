@@ -56,29 +56,54 @@ ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
 } ] );
 
 
-ctlMod.controller( "AddFolder", [ "$scope", "Folder",
-    function ( $scope, Folder ) {
+ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
+    function ( $scope, $rootScope, Folder ) {
 
         $scope.folder = {
             name: ""
         };
 
         $scope.save = function () {
+
             Folder.add( $scope.folder, function ( err, data ) {
+
                 if ( err ) {
                     console.log( "ERROR" );
                     console.log( err );
+                    return;
                 }
+
                 console.log( data );
+                clearForm();
+
             } );
+
+        };
+
+        var clearForm = function () {
+            $scope.folder.name = "";
         };
 
     } ] );
 
 
-ctlMod.controller( "List", [ "$scope", function ( $scope ) {
+ctlMod.controller( "List", [ "$scope", "$rootScope", "Folder",
+    function ( $scope, rootScope, Folder ) {
 
-} ] );
+        Folder.list( function ( err, data ) {
+
+            if ( err ) {
+                console.log( "ERROR" );
+                console.log( err );
+                return;
+            }
+
+            $scope.folders = data;
+            console.log( $scope.folders );
+
+        } );
+
+    } ] );
 
 
 ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
@@ -104,11 +129,15 @@ svcMod.factory( "applyScope", [ "$rootScope",
 svcMod.factory( "DB", [ "$rootScope",
     function ( $rootScope ) {
 
-        var db = new PouchDB( "linksDB" );
+        var db = new PouchDB( "linksDB", {
+            ajax: {
+                cache: false
+            }
+        } );
 
-        if ( $rootScope.syncEnabled ) {
-            // TODO
-        }
+        // if ( $rootScope.syncEnabled ) {
+        //     // TODO
+        // }
 
         return db;
 
@@ -116,7 +145,7 @@ svcMod.factory( "DB", [ "$rootScope",
 
 
 svcMod.factory( "Folder", [ "DB", "applyScope",
-    function ( $rootScope, DB ) {
+    function ( DB, applyScope ) {
         return {
             add: function ( doc, done ) {
 
@@ -128,20 +157,23 @@ svcMod.factory( "Folder", [ "DB", "applyScope",
             },
             list: function ( done ) {
 
-                var map = function ( doc ) {
-                    if ( doc.type === "folder" ) {
-                        emit( doc.name );
+                var mr = {
+                    map: function ( doc, emit ) {
+                        emit( doc.name, doc.name );
                     }
                 };
 
                 var options = {
-                    reduce: false,
                     include_docs: true
                 };
 
-                DB.query( { map: map }, options, function ( err, res ) {
+                DB.query( mr, options, function ( err, res ) {
                     return applyScope( err, res, done );
                 } );
+
+                // DB.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
+                //     return applyScope( err, doc, done );
+                // } );
 
             }
         };
