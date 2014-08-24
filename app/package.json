@@ -1,0 +1,17 @@
+{
+    "main": "index.html",
+    "name": "Links-App",
+    "window": {
+        "title": "Links",
+        // "icon": "link.png",
+        "toolbar": true,
+        "frame": true,
+        "width": 600,
+        "height": 500,
+        "min_width": 600,
+        "min_height": 500,
+        "max_width": 600,
+        "max_height": 500,
+        "position": "mouse"
+    }
+}
