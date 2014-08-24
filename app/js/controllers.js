@@ -27,6 +27,6 @@ ctlMod.controller( "List", [ "$scope", function ( $scope ) {
 } ] );
 
 
-ctlMod.controller( "CloudSync", [ "$scope", function ( $scope ) {
+ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
 
 } ] );

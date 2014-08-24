@@ -26,9 +26,9 @@ angMod.config( [
             controller: "List"
         } );
 
-        $routeProvider.when( "/cloud-sync", {
-            templateUrl: "templates/cloud-sync.html",
-            controller: "CloudSync"
+        $routeProvider.when( "/sync-setup", {
+            templateUrl: "templates/sync-setup.html",
+            controller: "SyncSetup"
         } );
 
         $routeProvider.otherwise( {
