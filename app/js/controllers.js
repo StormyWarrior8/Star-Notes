@@ -20,3 +20,13 @@ ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
 ctlMod.controller( "AddFolder", [ "$scope", function ( $scope ) {
 
 } ] );
+
+
+ctlMod.controller( "List", [ "$scope", function ( $scope ) {
+
+} ] );
+
+
+ctlMod.controller( "CloudSync", [ "$scope", function ( $scope ) {
+
+} ] );
