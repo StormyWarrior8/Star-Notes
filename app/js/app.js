@@ -21,6 +21,16 @@ angMod.config( [
             controller: "AddFolder"
         } );
 
+        $routeProvider.when( "/list", {
+            templateUrl: "templates/list.html",
+            controller: "List"
+        } );
+
+        $routeProvider.when( "/cloud-sync", {
+            templateUrl: "templates/cloud-sync.html",
+            controller: "CloudSync"
+        } );
+
         $routeProvider.otherwise( {
             redirectTo: "/add-link"
         } );
