@@ -2,6 +2,12 @@ body {
     margin: 0;
 }
 
+/*Override button style to match a.btn styling*/
+button {
+    padding: 0;
+    border-style: none;
+}
+
 .side {
     height: 500px;
     width: 110px;
@@ -48,3 +54,4 @@ body {
 #save-link-button {
     width: 400px;
 }
+
