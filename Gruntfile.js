@@ -52,7 +52,7 @@ module.exports = function( grunt ) {
             },
             pouchdb: {
                 src: [
-                    "bower_components/pouchdb/dist/pouchdb.min.js"
+                    "app/bower_components/pouchdb/dist/pouchdb.min.js"
                 ],
                 dest: "app/build/pouchdb.js"
             }

@@ -17,9 +17,24 @@ ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
 } ] );
 
 
-ctlMod.controller( "AddFolder", [ "$scope", function ( $scope ) {
+ctlMod.controller( "AddFolder", [ "$scope", "Folder",
+    function ( $scope, Folder ) {
 
-} ] );
+        $scope.folder = {
+            name: ""
+        };
+
+        $scope.save = function () {
+            Folder.add( $scope.folder, function ( err, data ) {
+                if ( err ) {
+                    console.log( "ERROR" );
+                    console.log( err );
+                }
+                console.log( data );
+            } );
+        };
+
+    } ] );
 
 
 ctlMod.controller( "List", [ "$scope", function ( $scope ) {
