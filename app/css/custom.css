@@ -12,6 +12,39 @@ body {
     height: 100px;
 }
 
+.side ul li a.active {
+    background: #242B33
+}
+
 .side ul li a i {
     margin-top: 20px;
+}
+
+.wrapper {
+    width: 460px;
+    float: left;
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+.input-field {
+    width: 400px;
+    margin: 0 0 20px 0;
+    padding-left: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    border: solid 1px #dae4eb;
+}
+
+#link-url-input {
+    height: 45px;
+}
+
+#link-note-input {
+    height: 200px;
+    padding-top: 10px;
+}
+
+#save-link-button {
+    width: 400px;
 }

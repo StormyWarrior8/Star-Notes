@@ -4,13 +4,13 @@
     "window": {
         "title": "Links",
         // "icon": "link.png",
-        "toolbar": true,
+        "toolbar": false,
         "frame": true,
-        "width": 600,
+        "width": 610,
         "height": 500,
-        "min_width": 600,
+        "min_width": 610,
         "min_height": 500,
-        "max_width": 600,
+        "max_width": 610,
         "max_height": 500,
         "position": "mouse"
     }
