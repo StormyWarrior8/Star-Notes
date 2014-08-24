@@ -5,7 +5,7 @@
     "description": "Links by Project Weekend",
     "window": {
         "title": "Links",
-        // "icon": "link.png",
+        "icon": "link.png",
         "toolbar": true,
         "frame": true,
         "width": 610,
