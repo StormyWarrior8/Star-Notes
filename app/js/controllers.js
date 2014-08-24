@@ -4,6 +4,6 @@ ctlMod.controller( "Main", [ "$scope", function ( $scope ) {
 
 } ] );
 
-ctlMod.controller( "Home", [ "$scope", function ( $scope ) {
+ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
 
 } ] );
