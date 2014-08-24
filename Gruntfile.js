@@ -56,7 +56,10 @@ module.exports = function( grunt ) {
         cssmin: {
             combine: {
                 files: {
-                    "app/build/style.css": [ "app/bower_components/bootstrap/dist/css/bootstrap.min.css" ]
+                    "app/build/style.css": [
+                        "app/bower_components/bootstrap/dist/css/bootstrap.min.css",
+                        "app/css/custom.css"
+                    ]
                 }
             }
         }
