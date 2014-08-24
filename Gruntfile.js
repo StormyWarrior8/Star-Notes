@@ -39,25 +39,14 @@ module.exports = function( grunt ) {
                     "app/bower_components/angular-route/angular-route.min.js"
                 ],
                 dest: "app/build/angular.js"
-            },
-            jquery: {
-                src: [
-                    "app/bower_components/jquery/dist/jquery.min.js"
-                ],
-                dest: "app/build/jquery.js"
-            },
-            bootstrap: {
-                src: [
-                    "app/bower_components/bootstrap/dist/js/bootstrap.min.js"
-                ],
-                dest: "app/build/bootstrap.js"
             }
         },
         cssmin: {
             combine: {
                 files: {
                     "app/build/style.css": [
-                        "app/bower_components/bootstrap/dist/css/bootstrap.min.css",
+                        "app/css/font-awesome.min.css",
+                        "app/css/ui-kit.css",
                         "app/css/custom.css"
                     ]
                 }
@@ -72,8 +61,6 @@ module.exports = function( grunt ) {
 
     grunt.registerTask( "default", [
         "concat:scripts",
-        "concat:jquery",
-        "concat:bootstrap",
         "concat:angular",
         "cssmin:combine"
     ] );
