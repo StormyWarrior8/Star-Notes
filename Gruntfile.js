@@ -52,18 +52,27 @@ module.exports = function( grunt ) {
                 ],
                 dest: "app/build/bootstrap.js"
             }
+        },
+        cssmin: {
+            combine: {
+                files: {
+                    "app/build/style.css": [ "app/bower_components/bootstrap/dist/css/bootstrap.min.css" ]
+                }
+            }
         }
     } );
 
     grunt.loadNpmTasks( "grunt-contrib-watch" );
     grunt.loadNpmTasks( "grunt-contrib-uglify" );
     grunt.loadNpmTasks( "grunt-contrib-concat" );
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask( "default", [
         "concat:scripts",
         "concat:jquery",
         "concat:bootstrap",
-        "concat:angular"
+        "concat:angular",
+        "cssmin:combine"
     ] );
 
     grunt.registerTask( "deploy",  [
