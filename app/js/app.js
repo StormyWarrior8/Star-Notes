@@ -16,6 +16,11 @@ angMod.config( [
             controller: "AddLink"
         } );
 
+        $routeProvider.when( "/add-folder", {
+            templateUrl: "templates/add-folder.html",
+            controller: "AddFolder"
+        } );
+
         $routeProvider.otherwise( {
             redirectTo: "/add-link"
         } );

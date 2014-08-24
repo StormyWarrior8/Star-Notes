@@ -16,6 +16,11 @@ angMod.config( [
             controller: "AddLink"
         } );
 
+        $routeProvider.when( "/add-folder", {
+            templateUrl: "templates/add-folder.html",
+            controller: "AddFolder"
+        } );
+
         $routeProvider.otherwise( {
             redirectTo: "/add-link"
         } );
@@ -37,6 +42,11 @@ ctlMod.controller( "Main", [ "$scope", "$location",
 
 
 ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
+
+} ] );
+
+
+ctlMod.controller( "AddFolder", [ "$scope", function ( $scope ) {
 
 } ] );
 

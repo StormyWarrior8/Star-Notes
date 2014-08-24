@@ -15,3 +15,8 @@ ctlMod.controller( "Main", [ "$scope", "$location",
 ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
 
 } ] );
+
+
+ctlMod.controller( "AddFolder", [ "$scope", function ( $scope ) {
+
+} ] );
