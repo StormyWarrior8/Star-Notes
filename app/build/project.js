@@ -32,3 +32,4 @@ ctlMod.controller( "Home", [ "$scope", function ( $scope ) {
 
 } ] );
 
+var svcMod = angular.module( "linksApp.services", [] );
