@@ -7,7 +7,17 @@ module.exports = function( grunt ) {
                 files: [
                     "app/js/*"
                 ],
-                tasks: [ "concat:scripts" ]
+                tasks: [
+                    "concat:scripts"
+                ]
+            },
+            css: {
+                files: [
+                    "app/css/*"
+                ],
+                tasks: [
+                    "cssmin:combine"
+                ]
             }
         },
         uglify: {
