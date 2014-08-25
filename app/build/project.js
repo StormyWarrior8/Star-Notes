@@ -108,9 +108,6 @@ ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
 var svcMod = angular.module( "linksApp.services", [] );
 
 
-var db = new PouchDB( "linksDB" );
-
-
 svcMod.factory( "applyScope", [ "$rootScope",
     function ( $rootScope ) {
         return function ( err, data, done ) {
@@ -126,38 +123,34 @@ svcMod.factory( "applyScope", [ "$rootScope",
     } ] );
 
 
-// svcMod.factory( "DB", [ "$rootScope",
-//     function ( $rootScope ) {
+svcMod.factory( "DB", [ "$rootScope",
+    function ( $rootScope ) {
 
-//         var db = new PouchDB( "linksDB", {
-//             ajax: {
-//                 cache: false
-//             }
-//         } );
+        var db = new PouchDB( "linksDB" );
 
-//         // if ( $rootScope.syncEnabled ) {
-//         //     // TODO
-//         // }
+        if ( $rootScope.syncEnabled ) {
+            // TODO
+        }
 
-//         return db;
+        return db;
 
-//     } ] );
+    } ] );
 
 
-svcMod.factory( "Folder", [ "applyScope",
-    function ( applyScope ) {
+svcMod.factory( "Folder", [ "DB", "applyScope",
+    function ( DB, applyScope ) {
         return {
             add: function ( doc, done ) {
 
                 doc.type = "folder";
-                db.post( doc, function ( err, res ) {
+                DB.post( doc, function ( err, res ) {
                     return applyScope( err, res, done );
                 } );
 
             },
             list: function ( done ) {
 
-                db.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
+                DB.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
                     return applyScope( err, doc, done );
                 } );
 
