@@ -68,8 +68,6 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
             Folder.add( $scope.folder, function ( err, data ) {
 
                 if ( err ) {
-                    console.log( "ERROR" );
-                    console.log( err );
                     return;
                 }
 
@@ -93,13 +91,10 @@ ctlMod.controller( "List", [ "$scope", "$rootScope", "Folder",
         Folder.list( function ( err, data ) {
 
             if ( err ) {
-                console.log( "ERROR" );
-                console.log( err );
                 return;
             }
 
-            $scope.folders = data;
-            console.log( $scope.folders );
+            $scope.folders = data.rows;
 
         } );
 
@@ -113,10 +108,15 @@ ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
 var svcMod = angular.module( "linksApp.services", [] );
 
 
+var db = new PouchDB( "linksDB" );
+
+
 svcMod.factory( "applyScope", [ "$rootScope",
     function ( $rootScope ) {
         return function ( err, data, done ) {
             $rootScope.$apply( function () {
+                console.log( err );
+                console.log( data );
                 if ( err ) {
                     return done( err );
                 }
@@ -126,54 +126,40 @@ svcMod.factory( "applyScope", [ "$rootScope",
     } ] );
 
 
-svcMod.factory( "DB", [ "$rootScope",
-    function ( $rootScope ) {
+// svcMod.factory( "DB", [ "$rootScope",
+//     function ( $rootScope ) {
 
-        var db = new PouchDB( "linksDB", {
-            ajax: {
-                cache: false
-            }
-        } );
+//         var db = new PouchDB( "linksDB", {
+//             ajax: {
+//                 cache: false
+//             }
+//         } );
 
-        // if ( $rootScope.syncEnabled ) {
-        //     // TODO
-        // }
+//         // if ( $rootScope.syncEnabled ) {
+//         //     // TODO
+//         // }
 
-        return db;
+//         return db;
 
-    } ] );
+//     } ] );
 
 
-svcMod.factory( "Folder", [ "DB", "applyScope",
-    function ( DB, applyScope ) {
+svcMod.factory( "Folder", [ "applyScope",
+    function ( applyScope ) {
         return {
             add: function ( doc, done ) {
 
                 doc.type = "folder";
-                DB.post( doc, function ( err, res ) {
+                db.post( doc, function ( err, res ) {
                     return applyScope( err, res, done );
                 } );
 
             },
             list: function ( done ) {
 
-                var mr = {
-                    map: function ( doc, emit ) {
-                        emit( doc.name, doc.name );
-                    }
-                };
-
-                var options = {
-                    include_docs: true
-                };
-
-                DB.query( mr, options, function ( err, res ) {
-                    return applyScope( err, res, done );
+                db.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
+                    return applyScope( err, doc, done );
                 } );
-
-                // DB.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
-                //     return applyScope( err, doc, done );
-                // } );
 
             }
         };

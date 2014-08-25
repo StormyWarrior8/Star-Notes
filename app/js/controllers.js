@@ -29,8 +29,6 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
             Folder.add( $scope.folder, function ( err, data ) {
 
                 if ( err ) {
-                    console.log( "ERROR" );
-                    console.log( err );
                     return;
                 }
 
@@ -54,13 +52,10 @@ ctlMod.controller( "List", [ "$scope", "$rootScope", "Folder",
         Folder.list( function ( err, data ) {
 
             if ( err ) {
-                console.log( "ERROR" );
-                console.log( err );
                 return;
             }
 
-            $scope.folders = data;
-            console.log( $scope.folders );
+            $scope.folders = data.rows;
 
         } );
 
