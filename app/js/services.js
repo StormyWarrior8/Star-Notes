@@ -43,8 +43,11 @@ svcMod.factory( "Folder", [ "DB", "applyScope",
             },
             list: function ( done ) {
 
-                DB.allDocs( { include_docs: true, descending: true }, function( err, doc ) {
-                    return applyScope( err, doc, done );
+
+                DB.allDocs( { include_docs: true, descending: true }, function( err, data ) {
+
+                    return applyScope( err, data, done );
+
                 } );
 
             }
