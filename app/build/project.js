@@ -51,9 +51,22 @@ ctlMod.controller( "Main", [ "$scope", "$location",
     } ] );
 
 
-ctlMod.controller( "AddLink", [ "$scope", function ( $scope ) {
+ctlMod.controller( "AddLink", [ "$scope", "Folder",
+    function ( $scope, Folder ) {
 
-} ] );
+        $scope.availableFolders = [];
+
+        Folder.list( function ( err, data ) {
+
+            if ( err ) {
+                return;
+            }
+
+            $scope.availableFolders = data.rows;
+
+        } );
+
+    } ] );
 
 
 ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
