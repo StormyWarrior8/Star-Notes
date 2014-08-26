@@ -1,3 +1,7 @@
 <div class="wrapper">
-    <h1>List</h1>
+    <div ng-repeat="f in folders | orderBy: 'doc.name'" class="folder">
+        <a ng-href="#/folder/{{ f.id }}">
+            <h3>{{ f.doc.name }}</h3>
+        </a>
+    </div>
 </div>

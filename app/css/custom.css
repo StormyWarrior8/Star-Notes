@@ -56,3 +56,31 @@ textarea {
 .block {
     width: 400px;
 }
+
+.folder {
+    color: #f97e76;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 150%;
+    font-family: sans-serif;
+    padding: 1px 0px 1px 10px;
+}
+
+.folder:hover {
+    background: #c1cfd9;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.folder:hover a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.folder a {
+    color: #f97e76;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 150%;
+    font-family: sans-serif;
+}

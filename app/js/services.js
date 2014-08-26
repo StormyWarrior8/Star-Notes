@@ -5,8 +5,6 @@ svcMod.factory( "applyScope", [ "$rootScope",
     function ( $rootScope ) {
         return function ( err, data, done ) {
             $rootScope.$apply( function () {
-                console.log( err );
-                console.log( data );
                 if ( err ) {
                     return done( err );
                 }
