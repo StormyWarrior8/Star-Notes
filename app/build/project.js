@@ -62,6 +62,7 @@ ctlMod.controller( "AddLink", [ "$scope", "Folder",
         Folder.list( function ( err, data ) {
 
             if ( err ) {
+                // TODO: broadcast error
                 return;
             }
 
@@ -81,7 +82,7 @@ ctlMod.controller( "AddLink", [ "$scope", "Folder",
             Folder.addLink( $scope.link, folder, function ( err, data ) {
 
                 if ( err ) {
-                    console.log( err );
+                    // TODO: broadcast error
                     return;
                 }
                 clearForm();
@@ -112,6 +113,7 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
             Folder.add( $scope.folder, function ( err, data ) {
 
                 if ( err ) {
+                    // TODO: broadcast error
                     return;
                 }
 
@@ -135,6 +137,7 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
         Folder.list( function ( err, data ) {
 
             if ( err ) {
+                // TODO: broadcast error
                 return;
             }
 
@@ -147,7 +150,18 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
 
 
 ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "Folder",
-    function ( $scope, rootScope, routeParams, Folder ) {
+    function ( $scope, $rootScope, $routeParams, Folder ) {
+
+        Folder.read( $routeParams.id, function ( err, data ) {
+
+            if ( err ) {
+                console.log( err );
+                return;
+            }
+
+            $scope.folder = data;
+
+        } );
 
     } ] );
 
