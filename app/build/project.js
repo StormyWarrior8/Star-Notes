@@ -26,6 +26,11 @@ angMod.config( [
             controller: "FoldersList"
         } );
 
+        $routeProvider.when( "/folders/:id", {
+            templateUrl: "templates/folders-detail.html",
+            controller: "FoldersDetail"
+        } );
+
         $routeProvider.when( "/sync-setup", {
             templateUrl: "templates/sync-setup.html",
             controller: "SyncSetup"
@@ -110,6 +115,12 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
             $scope.folders = data.rows;
 
         } );
+
+    } ] );
+
+
+ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "Folder",
+    function ( $scope, rootScope, routeParams, Folder ) {
 
     } ] );
 

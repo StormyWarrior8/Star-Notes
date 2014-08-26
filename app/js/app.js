@@ -26,6 +26,11 @@ angMod.config( [
             controller: "FoldersList"
         } );
 
+        $routeProvider.when( "/folders/:id", {
+            templateUrl: "templates/folders-detail.html",
+            controller: "FoldersDetail"
+        } );
+
         $routeProvider.when( "/sync-setup", {
             templateUrl: "templates/sync-setup.html",
             controller: "SyncSetup"

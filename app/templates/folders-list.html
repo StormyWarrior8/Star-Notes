@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div ng-repeat="f in folders | orderBy: 'doc.name'" class="folder">
-        <a ng-href="#/folder/{{ f.id }}">
+        <a ng-href="#/folders/{{ f.id }}">
             <h3>{{ f.doc.name }}</h3>
         </a>
     </div>

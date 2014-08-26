@@ -75,6 +75,12 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
     } ] );
 
 
+ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "Folder",
+    function ( $scope, rootScope, routeParams, Folder ) {
+
+    } ] );
+
+
 ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
 
 } ] );
