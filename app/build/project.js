@@ -21,9 +21,9 @@ angMod.config( [
             controller: "AddFolder"
         } );
 
-        $routeProvider.when( "/list", {
-            templateUrl: "templates/list.html",
-            controller: "List"
+        $routeProvider.when( "/folders", {
+            templateUrl: "templates/folders-list.html",
+            controller: "FoldersList"
         } );
 
         $routeProvider.when( "/sync-setup", {
@@ -98,7 +98,7 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
     } ] );
 
 
-ctlMod.controller( "List", [ "$scope", "$rootScope", "Folder",
+ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
     function ( $scope, rootScope, Folder ) {
 
         Folder.list( function ( err, data ) {

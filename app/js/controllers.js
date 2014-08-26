@@ -59,7 +59,7 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
     } ] );
 
 
-ctlMod.controller( "List", [ "$scope", "$rootScope", "Folder",
+ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
     function ( $scope, rootScope, Folder ) {
 
         Folder.list( function ( err, data ) {
