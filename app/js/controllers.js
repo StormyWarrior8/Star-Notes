@@ -15,8 +15,6 @@ ctlMod.controller( "Main", [ "$scope", "$location",
 ctlMod.controller( "AddLink", [ "$scope", "Folder",
     function ( $scope, Folder ) {
 
-        $scope.availableFolders = [];
-
         Folder.list( function ( err, data ) {
 
             if ( err ) {
@@ -26,6 +24,34 @@ ctlMod.controller( "AddLink", [ "$scope", "Folder",
             $scope.availableFolders = data.rows;
 
         } );
+
+        $scope.link = {
+            url: "",
+            note: ""
+        };
+
+        $scope.save = function () {
+
+            var folder = $scope.selectedFolder.doc;
+
+            Folder.addLink( $scope.link, folder, function ( err, data ) {
+
+                if ( err ) {
+                    console.log( err );
+                    return;
+                }
+                clearForm();
+                console.log( data );
+
+            } );
+
+        };
+
+        var clearForm = function () {
+            $scope.link.url = "";
+            $scope.link.note = "";
+            $scope.folder = {};
+        };
 
     } ] );
 
@@ -69,6 +95,7 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
             }
 
             $scope.folders = data.rows;
+            console.log( $scope.folders );
 
         } );
 

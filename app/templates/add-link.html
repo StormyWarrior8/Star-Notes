@@ -2,7 +2,7 @@
     <h1>Add New Link</h1>
     <form ng-submit="save()" name="addLinkForm">
         <input ng-model="link.url" name="urlField" type="url" placeholder="URL" class="input-field" id="link-url-input"/>
-        <select ng-model="link.folder" name="folderField" class="input-field"></select>
+        <select ng-model="selectedFolder" ng-options="f.doc.name for f in availableFolders" name="folderField" class="input-field"></select>
         <textarea ng-model="link.note" name="notesField" placeholder="Some notes (optional)" class="input-field" id="link-note-input"></textarea>
         <button type="submit" class="btn block" id="save-link-button">Save</button>
     </form>

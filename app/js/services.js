@@ -34,6 +34,7 @@ svcMod.factory( "Folder", [ "DB", "applyScope",
             add: function ( doc, done ) {
 
                 doc.type = "folder";
+                doc.links = [];
                 DB.post( doc, function ( err, res ) {
                     return applyScope( err, res, done );
                 } );
@@ -47,6 +48,14 @@ svcMod.factory( "Folder", [ "DB", "applyScope",
                 };
 
                 DB.allDocs( options, function( err, data ) {
+                    return applyScope( err, data, done );
+                } );
+
+            },
+            addLink: function ( linkDoc, folderDoc, done ) {
+
+                folderDoc.links.push( linkDoc );
+                DB.put( folderDoc, function ( err, data ) {
                     return applyScope( err, data, done );
                 } );
 
