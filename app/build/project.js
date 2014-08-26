@@ -210,6 +210,13 @@ svcMod.factory( "Folder", [ "DB", "applyScope",
                 } );
 
             },
+            read: function ( folderId, done ) {
+
+                DB.get( folderId, function ( err, data ) {
+                    return applyScope( err, data, done );
+                } );
+
+            },
             addLink: function ( linkDoc, folderDoc, done ) {
 
                 folderDoc.links.push( linkDoc );
