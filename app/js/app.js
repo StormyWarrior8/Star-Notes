@@ -31,11 +31,6 @@ angMod.config( [
             controller: "FoldersDetail"
         } );
 
-        $routeProvider.when( "/sync-setup", {
-            templateUrl: "templates/sync-setup.html",
-            controller: "SyncSetup"
-        } );
-
         $routeProvider.otherwise( {
             redirectTo: "/add-link"
         } );

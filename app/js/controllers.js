@@ -120,8 +120,3 @@ ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "F
         } );
 
     } ] );
-
-
-ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
-
-} ] );

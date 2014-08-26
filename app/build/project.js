@@ -31,11 +31,6 @@ angMod.config( [
             controller: "FoldersDetail"
         } );
 
-        $routeProvider.when( "/sync-setup", {
-            templateUrl: "templates/sync-setup.html",
-            controller: "SyncSetup"
-        } );
-
         $routeProvider.otherwise( {
             redirectTo: "/add-link"
         } );
@@ -164,11 +159,6 @@ ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "F
         } );
 
     } ] );
-
-
-ctlMod.controller( "SyncSetup", [ "$scope", function ( $scope ) {
-
-} ] );
 
 var svcMod = angular.module( "linksApp.services", [] );
 
