@@ -1,4 +1,8 @@
 <div class="wrapper">
     <h1>{{ folder.name }}</h1>
+    <div ng-repeat="l in folder.links" class="link">
+        <a ng-click="openLink( l.url )">{{ l.url }}</a>
+        <p>{{l.note}}</p>
+    </div>
 </div>
 

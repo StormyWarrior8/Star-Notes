@@ -81,7 +81,6 @@ ctlMod.controller( "AddLink", [ "$scope", "Folder",
                     return;
                 }
                 clearForm();
-                console.log( data );
 
             } );
 
@@ -112,7 +111,6 @@ ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
                     return;
                 }
 
-                console.log( data );
                 clearForm();
 
             } );
@@ -137,7 +135,6 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
             }
 
             $scope.folders = data.rows;
-            console.log( $scope.folders );
 
         } );
 
@@ -147,6 +144,8 @@ ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
 ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "Folder",
     function ( $scope, $rootScope, $routeParams, Folder ) {
 
+        var gui = require('nw.gui');
+
         Folder.read( $routeParams.id, function ( err, data ) {
 
             if ( err ) {
@@ -155,8 +154,13 @@ ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "F
             }
 
             $scope.folder = data;
+            console.log( $scope.folder );
 
         } );
+
+        $scope.openLink = function ( url ) {
+            gui.Shell.openExternal( url );
+        };
 
     } ] );
 
