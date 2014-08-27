@@ -38,6 +38,36 @@ svcMod.factory( "GUI", [ function () {
 } ] );
 
 
+svcMod.factory( "CopyPaste", [ "GUI", function ( GUI ) {
+
+    var copyOption = {
+        key: "Ctrl+C",
+        active: function () {
+            console.log("COPY!!!");
+            document.execCommand("copy");
+        },
+        failed : function( msg ) {
+            console.log( msg );
+        }
+    };
+
+    var pasteOption = {
+        key: "Ctrl+V",
+        active: function () {
+            console.log("PASTE!!!");
+            document.execCommand("paste");
+        },
+        failed : function( msg ) {
+            console.log( msg );
+        }
+    };
+
+    var copy = new GUI.Shortcut( copyOption );
+    var paste = new GUI.Shortcut( pasteOption );
+
+} ] );
+
+
 svcMod.factory( "Folder", [ "DB", "applyScope",
     function ( DB, applyScope ) {
         return {
