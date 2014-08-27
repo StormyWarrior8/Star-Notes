@@ -52,8 +52,8 @@ ctlMod.controller( "Main", [ "$scope", "$location",
     } ] );
 
 
-ctlMod.controller( "AddLink", [ "$scope", "Folder",
-    function ( $scope, Folder ) {
+ctlMod.controller( "AddLink", [ "$scope", "Folder", "CopyPaste",
+    function ( $scope, Folder, CopyPaste ) {
 
         var clearForm = function () {
             $scope.link.url = "";
@@ -201,6 +201,36 @@ svcMod.factory( "GUI", [ function () {
     var gui = require('nw.gui');
 
     return gui;
+
+} ] );
+
+
+svcMod.factory( "CopyPaste", [ "GUI", function ( GUI ) {
+
+    var copyOption = {
+        key: "Ctrl+C",
+        active: function () {
+            console.log("COPY!!!");
+            document.execCommand("copy");
+        },
+        failed : function( msg ) {
+            console.log( msg );
+        }
+    };
+
+    var pasteOption = {
+        key: "Ctrl+V",
+        active: function () {
+            console.log("PASTE!!!");
+            document.execCommand("paste");
+        },
+        failed : function( msg ) {
+            console.log( msg );
+        }
+    };
+
+    var copy = new GUI.Shortcut( copyOption );
+    var paste = new GUI.Shortcut( pasteOption );
 
 } ] );
 
