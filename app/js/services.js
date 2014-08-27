@@ -1,4 +1,5 @@
 var svcMod = angular.module( "linksApp.services", [] );
+var gui = require('nw.gui');
 
 
 svcMod.factory( "applyScope", [ "$rootScope",
@@ -26,6 +27,15 @@ svcMod.factory( "DB", [ "$rootScope",
         return db;
 
     } ] );
+
+
+svcMod.factory( "GUI", [ function () {
+
+    var gui = require('nw.gui');
+
+    return gui;
+
+} ] );
 
 
 svcMod.factory( "Folder", [ "DB", "applyScope",

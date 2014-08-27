@@ -1,5 +1,6 @@
 var ctlMod = angular.module( "linksApp.controllers", [] );
 
+
 ctlMod.controller( "Main", [ "$scope", "$location",
     function ( $scope, $location ) {
 
@@ -14,6 +15,12 @@ ctlMod.controller( "Main", [ "$scope", "$location",
 
 ctlMod.controller( "AddLink", [ "$scope", "Folder",
     function ( $scope, Folder ) {
+
+        var clearForm = function () {
+            $scope.link.url = "";
+            $scope.link.note = "";
+            $scope.folder = {};
+        };
 
         Folder.list( function ( err, data ) {
 
@@ -47,17 +54,11 @@ ctlMod.controller( "AddLink", [ "$scope", "Folder",
 
         };
 
-        var clearForm = function () {
-            $scope.link.url = "";
-            $scope.link.note = "";
-            $scope.folder = {};
-        };
-
     } ] );
 
 
 ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
-    function ( $scope, $rootScope, Folder ) {
+    function ( $scope, $rootScope, Folder) {
 
         $scope.folder = {
             name: ""
