@@ -13,8 +13,8 @@ ctlMod.controller( "Main", [ "$scope", "$location",
     } ] );
 
 
-ctlMod.controller( "AddLink", [ "$scope", "Folder", "CopyPaste",
-    function ( $scope, Folder, CopyPaste ) {
+ctlMod.controller( "AddLink", [ "$scope", "Folder", "ContextMenu",
+    function ( $scope, Folder, ContextMenu ) {
 
         var clearForm = function () {
             $scope.link.url = "";

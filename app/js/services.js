@@ -38,32 +38,39 @@ svcMod.factory( "GUI", [ function () {
 } ] );
 
 
-svcMod.factory( "CopyPaste", [ "GUI", function ( GUI ) {
+svcMod.factory( "ContextMenu", [ "GUI", function ( GUI ) {
 
-    var copyOption = {
-        key: "Ctrl+C",
-        active: function () {
-            console.log("COPY!!!");
-            document.execCommand("copy");
-        },
-        failed : function( msg ) {
-            console.log( msg );
+    var menu = new GUI.Menu();
+
+    var cut = new GUI.MenuItem( {
+        label: "Cut",
+        click: function () {
+            document.execCommand( "cut" );
         }
-    };
+    } );
+    menu.append( cut );
 
-    var pasteOption = {
-        key: "Ctrl+V",
-        active: function () {
-            console.log("PASTE!!!");
-            document.execCommand("paste");
-        },
-        failed : function( msg ) {
-            console.log( msg );
+    var copy = new GUI.MenuItem( {
+        label: "Copy",
+        click: function () {
+            document.execCommand( "copy" );
         }
-    };
+    } );
+    menu.append( copy );
 
-    var copy = new GUI.Shortcut( copyOption );
-    var paste = new GUI.Shortcut( pasteOption );
+    var paste = new GUI.MenuItem( {
+        label: "Paste",
+        click: function () {
+            document.execCommand( "paste" );
+        }
+    } );
+    menu.append( paste );
+
+    document.body.addEventListener( "contextmenu", function ( e ) {
+        e.preventDefault();
+        menu.popup( e.x, e.y );
+        return false;
+    } );
 
 } ] );
 
