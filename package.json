@@ -1,7 +1,7 @@
 {
-  "name": "Links-App-Build",
+  "name": "Star-Notes-Build",
   "version": "0.0.1",
-  "description": "Links-App Build",
+  "description": "Star-Notes Build",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/projectweekend/Links-App.git"
+    "url": "https://github.com/projectweekend/Star-Notes.git"
   },
   "author": "Brian Hines",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/projectweekend/Links-App/issues"
+    "url": "https://github.com/projectweekend/Star-Notes/issues"
   },
-  "homepage": "https://github.com/projectweekend/Links-App"
+  "homepage": "https://github.com/projectweekend/Star-Notes"
 }

@@ -1,4 +1,1 @@
-Links-App
-=========
-
-A desktop app for organizing interesting links
+A desktop app for organizing your GitHub stars

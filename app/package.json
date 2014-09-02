@@ -1,10 +1,10 @@
 {
-    "name": "Links-App",
+    "name": "Star-Notes",
     "version": "0.0.1",
     "main": "index.html",
-    "description": "Links by Project Weekend",
+    "description": "Star-Nostes by Project Weekend",
     "window": {
-        "title": "Links",
+        "title": "Star Notes",
         "icon": "link.png",
         "toolbar": true,
         "frame": true,

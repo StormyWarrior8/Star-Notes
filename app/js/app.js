@@ -1,7 +1,7 @@
-var angMod = angular.module( "linksApp", [
+var angMod = angular.module( "starNotes", [
     "ngRoute",
-    "linksApp.controllers",
-    "linksApp.services"
+    "starNotes.controllers",
+    "starNotes.services"
 ] );
 
 
@@ -11,28 +11,13 @@ angMod.config( [
     "$sceDelegateProvider",
     function ( $routeProvider, $locationProvider, $sceDelegateProvider ) {
 
-        $routeProvider.when( "/add-link", {
-            templateUrl: "templates/add-link.html",
-            controller: "AddLink"
-        } );
-
-        $routeProvider.when( "/add-folder", {
-            templateUrl: "templates/add-folder.html",
-            controller: "AddFolder"
-        } );
-
-        $routeProvider.when( "/folders", {
-            templateUrl: "templates/folders-list.html",
-            controller: "FoldersList"
-        } );
-
-        $routeProvider.when( "/folders/:id", {
-            templateUrl: "templates/folders-detail.html",
-            controller: "FoldersDetail"
+        $routeProvider.when( "/", {
+            templateUrl: "templates/home.html",
+            controller: "Home"
         } );
 
         $routeProvider.otherwise( {
-            redirectTo: "/add-link"
+            redirectTo: "/"
         } );
 
 } ] );

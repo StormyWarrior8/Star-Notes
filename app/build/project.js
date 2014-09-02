@@ -1,7 +1,7 @@
-var angMod = angular.module( "linksApp", [
+var angMod = angular.module( "starNotes", [
     "ngRoute",
-    "linksApp.controllers",
-    "linksApp.services"
+    "starNotes.controllers",
+    "starNotes.services"
 ] );
 
 
@@ -11,33 +11,18 @@ angMod.config( [
     "$sceDelegateProvider",
     function ( $routeProvider, $locationProvider, $sceDelegateProvider ) {
 
-        $routeProvider.when( "/add-link", {
-            templateUrl: "templates/add-link.html",
-            controller: "AddLink"
-        } );
-
-        $routeProvider.when( "/add-folder", {
-            templateUrl: "templates/add-folder.html",
-            controller: "AddFolder"
-        } );
-
-        $routeProvider.when( "/folders", {
-            templateUrl: "templates/folders-list.html",
-            controller: "FoldersList"
-        } );
-
-        $routeProvider.when( "/folders/:id", {
-            templateUrl: "templates/folders-detail.html",
-            controller: "FoldersDetail"
+        $routeProvider.when( "/", {
+            templateUrl: "templates/home.html",
+            controller: "Home"
         } );
 
         $routeProvider.otherwise( {
-            redirectTo: "/add-link"
+            redirectTo: "/"
         } );
 
 } ] );
 
-var ctlMod = angular.module( "linksApp.controllers", [] );
+var ctlMod = angular.module( "starNotes.controllers", [] );
 
 
 ctlMod.controller( "Main", [ "$scope", "$location",
@@ -52,121 +37,12 @@ ctlMod.controller( "Main", [ "$scope", "$location",
     } ] );
 
 
-ctlMod.controller( "AddLink", [ "$scope", "Folder", "ContextMenu",
-    function ( $scope, Folder, ContextMenu ) {
-
-        var clearForm = function () {
-            $scope.link.url = "";
-            $scope.link.note = "";
-            $scope.folder = {};
-        };
-
-        Folder.list( function ( err, data ) {
-
-            if ( err ) {
-                // TODO: broadcast error
-                return;
-            }
-
-            $scope.availableFolders = data.rows;
-
-        } );
-
-        $scope.link = {
-            url: "",
-            note: ""
-        };
-
-        $scope.save = function () {
-
-            var folder = $scope.selectedFolder.doc;
-
-            Folder.addLink( $scope.link, folder, function ( err, data ) {
-
-                if ( err ) {
-                    // TODO: broadcast error
-                    return;
-                }
-                clearForm();
-
-            } );
-
-        };
+ctlMod.controller( "Home", [ "$scope",
+    function ( $scope ) {
 
     } ] );
 
-
-ctlMod.controller( "AddFolder", [ "$scope", "$rootScope", "Folder",
-    function ( $scope, $rootScope, Folder) {
-
-        $scope.folder = {
-            name: ""
-        };
-
-        $scope.save = function () {
-
-            Folder.add( $scope.folder, function ( err, data ) {
-
-                if ( err ) {
-                    // TODO: broadcast error
-                    return;
-                }
-
-                clearForm();
-
-            } );
-
-        };
-
-        var clearForm = function () {
-            $scope.folder.name = "";
-        };
-
-    } ] );
-
-
-ctlMod.controller( "FoldersList", [ "$scope", "$rootScope", "Folder",
-    function ( $scope, rootScope, Folder ) {
-
-        Folder.list( function ( err, data ) {
-
-            if ( err ) {
-                // TODO: broadcast error
-                return;
-            }
-
-            $scope.folders = data.rows;
-
-        } );
-
-    } ] );
-
-
-ctlMod.controller( "FoldersDetail", [ "$scope", "$rootScope", "$routeParams", "Folder",
-    function ( $scope, $rootScope, $routeParams, Folder ) {
-
-        var gui = require('nw.gui');
-
-        Folder.read( $routeParams.id, function ( err, data ) {
-
-            if ( err ) {
-                console.log( err );
-                return;
-            }
-
-            $scope.folder = data;
-            console.log( $scope.folder );
-
-        } );
-
-        $scope.openLink = function ( url ) {
-            gui.Shell.openExternal( url );
-        };
-
-    } ] );
-
-var svcMod = angular.module( "linksApp.services", [] );
-var gui = require('nw.gui');
+var svcMod = angular.module( "starNotes.services", [] );
 
 
 svcMod.factory( "applyScope", [ "$rootScope",
@@ -203,83 +79,3 @@ svcMod.factory( "GUI", [ function () {
     return gui;
 
 } ] );
-
-
-svcMod.factory( "ContextMenu", [ "GUI", function ( GUI ) {
-
-    var menu = new GUI.Menu();
-
-    var cut = new GUI.MenuItem( {
-        label: "Cut",
-        click: function () {
-            document.execCommand( "cut" );
-        }
-    } );
-    menu.append( cut );
-
-    var copy = new GUI.MenuItem( {
-        label: "Copy",
-        click: function () {
-            document.execCommand( "copy" );
-        }
-    } );
-    menu.append( copy );
-
-    var paste = new GUI.MenuItem( {
-        label: "Paste",
-        click: function () {
-            document.execCommand( "paste" );
-        }
-    } );
-    menu.append( paste );
-
-    document.body.addEventListener( "contextmenu", function ( e ) {
-        e.preventDefault();
-        menu.popup( e.x, e.y );
-        return false;
-    } );
-
-} ] );
-
-
-svcMod.factory( "Folder", [ "DB", "applyScope",
-    function ( DB, applyScope ) {
-        return {
-            add: function ( doc, done ) {
-
-                doc.type = "folder";
-                doc.links = [];
-                DB.post( doc, function ( err, res ) {
-                    return applyScope( err, res, done );
-                } );
-
-            },
-            list: function ( done ) {
-
-                var options = {
-                    include_docs: true,
-                    descending: true
-                };
-
-                DB.allDocs( options, function( err, data ) {
-                    return applyScope( err, data, done );
-                } );
-
-            },
-            read: function ( folderId, done ) {
-
-                DB.get( folderId, function ( err, data ) {
-                    return applyScope( err, data, done );
-                } );
-
-            },
-            addLink: function ( linkDoc, folderDoc, done ) {
-
-                folderDoc.links.push( linkDoc );
-                DB.put( folderDoc, function ( err, data ) {
-                    return applyScope( err, data, done );
-                } );
-
-            }
-        };
-    } ] );
