@@ -9,11 +9,11 @@
         "toolbar": true,
         "frame": true,
         "width": 610,
-        "height": 500,
+        "height": 600,
         "min_width": 610,
-        "min_height": 500,
+        "min_height": 600,
         "max_width": 610,
-        "max_height": 500,
+        "max_height": 600,
         "position": "mouse"
     }
 }
