@@ -54,6 +54,11 @@ textarea {
     border: solid 1px #dae4eb;
 }
 
+#button-bar {
+    position: fixed;
+    bottom: 30px;
+}
+
 .block {
     width: 400px;
 }
