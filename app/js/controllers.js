@@ -17,3 +17,9 @@ ctlMod.controller( "Home", [ "$scope",
     function ( $scope ) {
 
     } ] );
+
+
+ctlMod.controller( "GetStarted", [ "$scope",
+    function ( $scope ) {
+
+    } ] );

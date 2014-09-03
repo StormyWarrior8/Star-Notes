@@ -11,9 +11,20 @@ angMod.config( [
     "$sceDelegateProvider",
     function ( $routeProvider, $locationProvider, $sceDelegateProvider ) {
 
+        var resolve = {
+            checkLogin: function ( Login ) {
+                return Login.checkLogin();
+            }
+        };
+
         $routeProvider.when( "/", {
             templateUrl: "templates/home.html",
             controller: "Home"
+        } );
+
+        $routeProvider.when( "/get-started", {
+            templateUrl: "templates/get-started.html",
+            controller: "GetStarted"
         } );
 
         $routeProvider.otherwise( {
@@ -38,6 +49,12 @@ ctlMod.controller( "Main", [ "$scope", "$location",
 
 
 ctlMod.controller( "Home", [ "$scope",
+    function ( $scope ) {
+
+    } ] );
+
+
+ctlMod.controller( "GetStarted", [ "$scope",
     function ( $scope ) {
 
     } ] );
@@ -79,3 +96,13 @@ svcMod.factory( "GUI", [ function () {
     return gui;
 
 } ] );
+
+
+svcMod.factory( "Login", [ "$rootScope", "$location",
+    function ( $rootScope, $location ) {
+        return {
+            checkLogin: function () {
+                // TODO: check login and redirect to get-started as needed
+            }
+        };
+    } ] );

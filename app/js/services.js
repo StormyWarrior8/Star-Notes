@@ -35,3 +35,13 @@ svcMod.factory( "GUI", [ function () {
     return gui;
 
 } ] );
+
+
+svcMod.factory( "Login", [ "$rootScope", "$location",
+    function ( $rootScope, $location ) {
+        return {
+            checkLogin: function () {
+                // TODO: check login and redirect to get-started as needed
+            }
+        };
+    } ] );
