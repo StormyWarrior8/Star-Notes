@@ -22,9 +22,9 @@ angMod.config( [
             controller: "Home"
         } );
 
-        $routeProvider.when( "/get-started", {
-            templateUrl: "templates/get-started.html",
-            controller: "GetStarted"
+        $routeProvider.when( "/settings", {
+            templateUrl: "templates/settings.html",
+            controller: "Settings"
         } );
 
         $routeProvider.otherwise( {

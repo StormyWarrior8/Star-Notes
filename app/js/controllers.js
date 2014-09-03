@@ -19,7 +19,7 @@ ctlMod.controller( "Home", [ "$scope",
     } ] );
 
 
-ctlMod.controller( "GetStarted", [ "$scope",
+ctlMod.controller( "Settings", [ "$scope",
     function ( $scope ) {
 
     } ] );
